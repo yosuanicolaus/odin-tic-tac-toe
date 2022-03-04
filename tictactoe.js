@@ -5,6 +5,9 @@ const Gameboard = (() => {
   const board = Array(9).fill("-");
 
   const displayBoard = () => {
+    for (let i = 0; i < card.length; i++) {
+      card[i].textContent = board[i];
+    }
     return board;
   };
 
