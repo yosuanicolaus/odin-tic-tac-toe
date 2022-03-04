@@ -4,32 +4,57 @@ const card = document.getElementsByClassName("card");
 const Gameboard = (() => {
   const board = Array(9).fill("");
 
-  const displayBoard = () => {
+  const display = () => {
     for (let i = 0; i < card.length; i++) {
       card[i].textContent = board[i];
     }
     return board;
   };
 
-  const fillX = (index) => {
-    board[index] = "X";
-  };
+  // const fillX = (index) => {
+  //   board[index] = "X";
+  // };
 
-  const fillO = (index) => {
-    board[index] = "O";
+  // const fillO = (index) => {
+  //   board[index] = "O";
+  // };
+
+  const fill = (index, symbol) => {
+    board[index] = symbol;
   };
 
   return {
-    displayBoard,
-    fillX,
-    fillO,
+    display,
+    fill,
   };
 })();
 
-console.log(Gameboard.displayBoard());
+const Player = (name, symbol) => {
+  const mark = (index, symbol) => {
+    Game.play(index, symbol);
+  };
 
-Gameboard.fillO(1);
-Gameboard.fillX(3);
-Gameboard.fillO(5);
+  return {
+    mark,
+  };
+};
 
-console.log(Gameboard.displayBoard());
+const Game = (() => {
+  const play = (index, symbol) => {
+    checkValidity(index, symbol);
+    Gameboard.fill(index, symbol);
+    Gameboard.display();
+  };
+
+  const checkValidity = (index, symbol) => {
+    return true;
+  };
+
+  return {
+    play,
+  };
+})();
+
+Gameboard.fill(3, "X");
+Gameboard.fill(5, "O");
+Gameboard.display();
