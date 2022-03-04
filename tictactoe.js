@@ -22,7 +22,7 @@ const Gameboard = (() => {
 })();
 
 const Player = (name, symbol) => {
-  const mark = (index, symbol) => {
+  const mark = (index) => {
     Game.play(index, symbol);
   };
 
@@ -47,6 +47,14 @@ const Game = (() => {
   };
 })();
 
-Gameboard.fill(3, "X");
-Gameboard.fill(5, "O");
-Gameboard.display();
+let Jeff = Player("Jeff", "X");
+let Bob = Player("Bob", "O");
+
+Jeff.mark(0);
+Bob.mark(2);
+
+for (let i = 0; i < card.length; i++) {
+  card[i].addEventListener("click", () => {
+    console.log("it works! this is " + i);
+  });
+}
