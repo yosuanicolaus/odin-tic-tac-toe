@@ -11,14 +11,6 @@ const Gameboard = (() => {
     return board;
   };
 
-  // const fillX = (index) => {
-  //   board[index] = "X";
-  // };
-
-  // const fillO = (index) => {
-  //   board[index] = "O";
-  // };
-
   const fill = (index, symbol) => {
     board[index] = symbol;
   };
@@ -41,13 +33,13 @@ const Player = (name, symbol) => {
 
 const Game = (() => {
   const play = (index, symbol) => {
-    checkValidity(index, symbol);
+    if (!checkValidity(index)) return;
     Gameboard.fill(index, symbol);
     Gameboard.display();
   };
 
-  const checkValidity = (index, symbol) => {
-    return true;
+  const checkValidity = (index) => {
+    return Gameboard.display()[index] === "";
   };
 
   return {
