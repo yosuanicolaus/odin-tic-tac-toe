@@ -38,10 +38,16 @@ const Game = (() => {
     _turn++;
     Gameboard.fill(index, symbol);
     Gameboard.display();
+    if (_turn >= 3) checkStatus(symbol);
   };
 
   const checkValidity = (index) => {
     return Gameboard.display()[index] === "";
+  };
+
+  const checkStatus = (symbol) => {
+    const board = Gameboard.display();
+    // TODO: implement check for winner
   };
 
   const playTurn = (index) => {
