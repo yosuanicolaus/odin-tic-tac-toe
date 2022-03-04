@@ -2,7 +2,7 @@ const container = document.getElementById("container");
 const card = document.getElementsByClassName("card");
 
 const Gameboard = (() => {
-  const board = Array(9).fill("-");
+  const board = Array(9).fill("");
 
   const displayBoard = () => {
     for (let i = 0; i < card.length; i++) {
