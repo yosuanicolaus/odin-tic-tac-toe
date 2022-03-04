@@ -1,0 +1,13 @@
+#container {
+  display: grid;
+  width: 400px;
+  height: 400px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 15px;
+  border: solid blue;
+
+  .card {
+    background-color: aqua;
+  }
+}

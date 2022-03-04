@@ -1,3 +1,6 @@
+const container = document.getElementById("container");
+const card = document.getElementsByClassName("card");
+
 const Gameboard = (() => {
   const board = Array(9).fill("-");
 
@@ -22,6 +25,8 @@ const Gameboard = (() => {
 
 console.log(Gameboard.displayBoard());
 
-console.log(Gameboard.fillX(4));
+Gameboard.fillO(1);
+Gameboard.fillX(3);
+Gameboard.fillO(5);
 
 console.log(Gameboard.displayBoard());
