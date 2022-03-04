@@ -32,8 +32,10 @@ const Player = (name, symbol) => {
 };
 
 const Game = (() => {
+  let _turn = 0;
   const play = (index, symbol) => {
     if (!checkValidity(index)) return;
+    _turn++;
     Gameboard.fill(index, symbol);
     Gameboard.display();
   };
@@ -42,19 +44,25 @@ const Game = (() => {
     return Gameboard.display()[index] === "";
   };
 
+  const playTurn = (index) => {
+    if (_turn % 2 === 0) {
+      playerX.mark(index);
+    } else {
+      playerO.mark(index);
+    }
+  };
+
   return {
     play,
+    playTurn,
   };
 })();
 
-let Jeff = Player("Jeff", "X");
-let Bob = Player("Bob", "O");
-
-Jeff.mark(0);
-Bob.mark(2);
+const playerX = Player("Jeff", "X");
+const playerO = Player("Bob", "O");
 
 for (let i = 0; i < card.length; i++) {
   card[i].addEventListener("click", () => {
-    console.log("it works! this is " + i);
+    Game.playTurn(i);
   });
 }
