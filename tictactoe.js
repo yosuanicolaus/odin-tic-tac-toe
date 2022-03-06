@@ -46,7 +46,7 @@ const Game = (() => {
   };
 
   const checkStatus = (symbol) => {
-    console.log("checking status");
+    console.log("checking status...");
     const board = Gameboard.display();
     let boardIndex = 0;
     // TODO: implement check for winner
@@ -58,20 +58,37 @@ const Game = (() => {
         newBoard[i][j] = board[boardIndex++];
       }
     }
-    console.table(newBoard);
 
     let key = new Array(3);
-    function checkKey() {
-      if (key[0] === key[1] && key[0] === key[2]) {
-        console.log(symbol + " PLAYER WIN!!! YOOO");
-      }
-    }
-    // check for same i
+
     for (let i = 0; i < 3; i++) {
+      // check for same i
       for (let j = 0; j < 3; j++) {
         key[j] = newBoard[i][j];
       }
       checkKey();
+
+      // check for same j
+      for (let j = 0; j < 3; j++) {
+        key[j] = newBoard[j][i];
+      }
+      checkKey();
+    }
+
+    // check for diagonal
+    key[0] = board[0];
+    key[1] = board[4];
+    key[2] = board[8];
+    checkKey();
+
+    key[0] = board[2];
+    key[2] = board[6];
+    checkKey();
+
+    function checkKey() {
+      if (key[0] === key[1] && key[0] === key[2] && key[0] !== "") {
+        console.log(symbol + " PLAYER WIN!!! YOOO");
+      }
     }
   };
 
