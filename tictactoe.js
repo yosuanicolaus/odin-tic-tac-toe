@@ -49,8 +49,7 @@ const Game = (() => {
     console.log("checking status...");
     const board = Gameboard.display();
     let boardIndex = 0;
-    // TODO: implement check for winner
-    // convert 1d array to 2d array
+
     const newBoard = new Array(3);
     for (let i = 0; i < 3; i++) {
       newBoard[i] = [];
@@ -87,9 +86,13 @@ const Game = (() => {
 
     function checkKey() {
       if (key[0] === key[1] && key[0] === key[2] && key[0] !== "") {
-        console.log(symbol + " PLAYER WIN!!! YOOO");
+        announceWinner(symbol);
       }
     }
+  };
+
+  const announceWinner = (winner) => {
+    console.log("announcing winner... the winner is... " + winner + "!!!");
   };
 
   const playTurn = (index) => {
