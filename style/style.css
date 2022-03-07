@@ -1,4 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap");
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  text-align: center;
+}
+
+body {
+  background-color: #fffbe9;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr auto 1fr;
+      grid-template-columns: 1fr auto 1fr;
+  -ms-grid-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr auto;
+}
+
+body h1, body footer {
+  grid-column: span 3;
+}
+
+body .mainbar, body .leftbar, body .rightbar {
+  background-color: antiquewhite;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  place-content: center;
+}
+
 #container {
   display: -ms-grid;
   display: grid;

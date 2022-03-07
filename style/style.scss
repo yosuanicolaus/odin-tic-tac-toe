@@ -1,5 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  text-align: center;
+}
+
+body {
+  background-color: rgb(255, 251, 233);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto 1fr auto;
+
+  h1, footer {
+    grid-column: span 3;
+  }
+
+  .mainbar, .leftbar, .rightbar {
+    background-color: antiquewhite;
+    display: grid;
+    justify-items: center;
+    place-content: center;
+  }
+}
+
 #container {
   display: grid;
   width: 400px;
