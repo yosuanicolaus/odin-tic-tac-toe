@@ -97,6 +97,15 @@ body {
   }
 }
 
+.leftbar>h3, .rightbar>h3 {
+  background-color: $c5;
+  width: 20vw;
+  padding: 40px 0;
+  border: 10px double rgb(239, 249, 255);
+  border-radius: 30px;
+  font-size: 1.5rem;
+}
+
 #container {
   display: grid;
   width: 60vh;

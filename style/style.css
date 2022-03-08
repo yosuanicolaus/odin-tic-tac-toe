@@ -114,6 +114,15 @@ body .mainbar {
   text-align: center;
 }
 
+.leftbar > h3, .rightbar > h3 {
+  background-color: #b4e6f5;
+  width: 20vw;
+  padding: 40px 0;
+  border: 10px double #eff9ff;
+  border-radius: 30px;
+  font-size: 1.5rem;
+}
+
 #container {
   display: -ms-grid;
   display: grid;

@@ -8,8 +8,10 @@ const start = document.getElementById("start");
 const description = document.getElementById("description");
 description.setAttribute("style", "white-space: pre;");
 const drawScore = document.getElementById("drawScore");
-const oScore = document.getElementById("oScore");
 const xScore = document.getElementById("xScore");
+const oScore = document.getElementById("oScore");
+const xDisplay = document.getElementById("xDisplay");
+const oDisplay = document.getElementById("oDisplay");
 const reset = document.getElementById("reset");
 const newgame = document.getElementById("newgame");
 
@@ -174,10 +176,24 @@ const Game = (() => {
     description.textContent += "click the cards below to start the game";
   };
 
+  const initialize = () => {
+    reset();
+    description.textContent =
+      "Welcome to Tic Tac Toe!\r\nStart clicking the cards below to play";
+    xDisplay.textContent = xName.value;
+    oDisplay.textContent = oName.value;
+    _score = {
+      X: 0,
+      O: 0,
+      draw: 0,
+    };
+  };
+
   return {
     play,
     playTurn,
     reset,
+    initialize,
   };
 })();
 
@@ -191,6 +207,7 @@ start.addEventListener("click", () => {
   menu.style.display = "none";
   player.X = Player("X", xName.value);
   player.O = Player("O", oName.value);
+  Game.initialize();
 });
 
 reset.addEventListener("click", () => {
