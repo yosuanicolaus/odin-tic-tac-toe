@@ -1,3 +1,10 @@
+const menu = document.getElementById("menu");
+const xName = document.getElementById("xName");
+const oName = document.getElementById("oName");
+const xhumanorbot = document.getElementById("xhumanorbot");
+const ohumanorbot = document.getElementById("ohumanorbot");
+const start = document.getElementById("start");
+
 const description = document.getElementById("description");
 description.setAttribute("style", "white-space: pre;");
 const drawScore = document.getElementById("drawScore");
@@ -180,6 +187,16 @@ for (let i = 0; i < card.length; i++) {
   });
 }
 
+start.addEventListener("click", () => {
+  menu.style.display = "none";
+  player.X = Player("X", xName.value);
+  player.O = Player("O", oName.value);
+});
+
 reset.addEventListener("click", () => {
   Game.reset();
+});
+
+newgame.addEventListener("click", () => {
+  menu.style.display = "flex";
 });

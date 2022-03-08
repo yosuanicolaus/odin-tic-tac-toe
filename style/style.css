@@ -47,16 +47,30 @@ body .mainbar {
 #menu {
   background-color: #a9535c;
   position: absolute;
-  width: 100vw;
-  height: 100vh;
-  font-size: 1.5rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
 }
 
 #menu #form {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (20vw)[3];
-      grid-template-columns: repeat(3, 20vw);
+  -ms-grid-columns: 20vw 50px 20vw;
+      grid-template-columns: 20vw 50px 20vw;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -67,14 +81,37 @@ body .mainbar {
 }
 
 #menu #form button {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / 3;
+  background-color: #e4e1a5;
+  border-radius: 20px;
+  grid-column: span 3;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 150px;
 }
 
 #menu #form input {
   background-color: #e4e1a5;
   border-radius: 20px;
+  text-align: center;
+}
+
+#menu #form .humanorbot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#menu #form .humanorbot select {
+  background-color: #c7717a;
+  border-radius: 30px;
+  width: 100px;
+  text-align: center;
 }
 
 #container {

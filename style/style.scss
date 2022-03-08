@@ -47,29 +47,52 @@ body {
 #menu {
   background-color: $c1;
   position: absolute;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  font-size: 1.5rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  // width: 100vw;
+  // height: 100vh;
+  // font-size: 1.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
 
   #form {
     display: grid;
-    grid-template-columns: repeat(3, 20vw);
+    grid-template-columns: 20vw 50px 20vw;
     justify-content: center;
 
     h2 {
       grid-row: span 2;
     }
     button {
-      grid-column: 2 / 3;
+      background-color: $c3;
+      border-radius: 20px;
+      grid-column: span 3;
+      justify-self: center;
+      width: 150px;
     }
 
     input {
       background-color: $c3;
       border-radius: 20px;
+      text-align: center;
+    }
+
+    .humanorbot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      select {
+        background-color: #c7717a;
+        border-radius: 30px;
+        width: 100px;
+        text-align: center;
+      }
     }
   }
 }
