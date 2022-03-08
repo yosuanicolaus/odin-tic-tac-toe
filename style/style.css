@@ -1,15 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap");
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   text-align: center;
-  font-family: 'Hubballi', cursive;
+  font-family: "Hubballi", cursive;
 }
 
 body {
-  background-color: #A9535C;
+  background-color: #a9535c;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr auto 1fr;
@@ -27,7 +28,7 @@ body footer {
 body .mainbar,
 body .leftbar,
 body .rightbar {
-  background-color: #E4E1A5;
+  background-color: #e4e1a5;
   display: -ms-grid;
   display: grid;
   justify-items: center;
@@ -43,6 +44,39 @@ body .mainbar {
   padding: 5px;
 }
 
+#menu {
+  background-color: #a9535c;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.5rem;
+}
+
+#menu #form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (20vw)[3];
+      grid-template-columns: repeat(3, 20vw);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#menu #form h2 {
+  grid-row: span 2;
+}
+
+#menu #form button {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+}
+
+#menu #form input {
+  background-color: #e4e1a5;
+  border-radius: 20px;
+}
+
 #container {
   display: -ms-grid;
   display: grid;
@@ -54,12 +88,12 @@ body .mainbar {
       grid-template-rows: repeat(3, 1fr);
   gap: 15px;
   padding: 10px;
-  background-color: #CF7F5C;
-  border: solid #A9535C;
+  background-color: #cf7f5c;
+  border: solid #a9535c;
 }
 
 #container .card {
-  background-color: #D5F0DF;
+  background-color: #d5f0df;
   font-family: "Fredoka", sans-serif;
   display: -ms-grid;
   display: grid;
@@ -67,8 +101,8 @@ body .mainbar {
   -ms-flex-line-pack: center;
       align-content: center;
   font-size: 3rem;
-  -webkit-transition: .5s;
-  transition: .5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 #container .card:hover {
@@ -97,12 +131,12 @@ footer .buttons button {
   width: 100px;
   background-color: #f09e7b;
   border-radius: 10px;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 footer .buttons button:hover {
-  background-color: #CF7F5C;
+  background-color: #cf7f5c;
   border: 2px solid white;
 }
 /*# sourceMappingURL=style.css.map */

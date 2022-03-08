@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap");
 
-$c1: #A9535C;
-$c2: #CF7F5C;
-$c3: #E4E1A5;
-$c4: #D5F0DF;
-$c5: #B4E6F5;
+$c1: #a9535c;
+$c2: #cf7f5c;
+$c3: #e4e1a5;
+$c4: #d5f0df;
+$c5: #b4e6f5;
 
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   text-align: center;
-  font-family: 'Hubballi', cursive;
+  font-family: "Hubballi", cursive;
 }
 
 body {
@@ -44,6 +44,36 @@ body {
   }
 }
 
+#menu {
+  background-color: $c1;
+  position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.5rem;
+
+  #form {
+    display: grid;
+    grid-template-columns: repeat(3, 20vw);
+    justify-content: center;
+
+    h2 {
+      grid-row: span 2;
+    }
+    button {
+      grid-column: 2 / 3;
+    }
+
+    input {
+      background-color: $c3;
+      border-radius: 20px;
+    }
+  }
+}
+
 #container {
   display: grid;
   width: 60vh;
@@ -62,7 +92,7 @@ body {
     justify-items: center;
     align-content: center;
     font-size: 3rem;
-    transition: .5s;
+    transition: 0.5s;
   }
 
   .card:hover {
@@ -86,7 +116,7 @@ footer {
       width: 100px;
       background-color: #f09e7b;
       border-radius: 10px;
-      transition: .4s;
+      transition: 0.4s;
     }
 
     button:hover {
