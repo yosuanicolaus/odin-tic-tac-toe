@@ -1,42 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap");
+
+$c1: #A9535C;
+$c2: #CF7F5C;
+$c3: #E4E1A5;
+$c4: #D5F0DF;
+$c5: #B4E6F5;
+
 
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   text-align: center;
+  font-family: 'Hubballi', cursive;
 }
 
 body {
-  background-color: rgb(255, 251, 233);
+  background-color: $c1;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   grid-template-rows: auto 1fr auto;
 
-  h1, footer {
+  h1,
+  footer {
     grid-column: span 3;
+    color: rgb(224, 243, 190);
   }
 
-  .mainbar, .leftbar, .rightbar {
-    background-color: antiquewhite;
+  .mainbar,
+  .leftbar,
+  .rightbar {
+    background-color: $c3;
     display: grid;
     justify-items: center;
     place-content: center;
+  }
+
+  .mainbar {
+    grid-template-rows: auto 1fr auto;
+    align-items: center;
   }
 }
 
 #container {
   display: grid;
-  width: 400px;
-  height: 400px;
+  width: 60vh;
+  height: 60vh;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 15px;
-  border: solid blue;
+  padding: 10px;
+  background-color: $c2;
+  border: solid $c1;
 
   .card {
-    background-color: aqua;
-    font-family: 'Fredoka', sans-serif;
+    background-color: $c4;
+    font-family: "Fredoka", sans-serif;
     display: grid;
     justify-items: center;
     align-content: center;
