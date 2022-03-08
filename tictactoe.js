@@ -12,7 +12,7 @@ const xScore = document.getElementById("xScore");
 const oScore = document.getElementById("oScore");
 const xDisplay = document.getElementById("xDisplay");
 const oDisplay = document.getElementById("oDisplay");
-const reset = document.getElementById("reset");
+const resetBtn = document.getElementById("reset");
 const newgame = document.getElementById("newgame");
 
 const container = document.getElementById("container");
@@ -140,6 +140,7 @@ const Game = (() => {
     _isRunning = false;
     description.textContent = player[winner].getName() + " win!";
     description.textContent += "\r\nplay again?";
+    resetBtn.textContent = "new round";
     _score[winner]++;
     _updateScore();
   };
@@ -147,6 +148,7 @@ const Game = (() => {
   const _announceDraw = () => {
     _isRunning = false;
     description.textContent = "It's a draw!\r\nplay again?";
+    resetBtn.textContent = "new round";
     _score.draw++;
     _updateScore();
   };
@@ -174,6 +176,7 @@ const Game = (() => {
     _isRunning = true;
     description.textContent = "Round resetted!\r\n";
     description.textContent += "click the cards below to start the game";
+    resetBtn.textContent = "reset round";
   };
 
   const initialize = () => {
@@ -182,11 +185,10 @@ const Game = (() => {
       "Welcome to Tic Tac Toe!\r\nStart clicking the cards below to play";
     xDisplay.textContent = xName.value;
     oDisplay.textContent = oName.value;
-    _score = {
-      X: 0,
-      O: 0,
-      draw: 0,
-    };
+    for (const key in _score) {
+      _score[key] = 0;
+    }
+    _updateScore();
   };
 
   return {
@@ -210,7 +212,7 @@ start.addEventListener("click", () => {
   Game.initialize();
 });
 
-reset.addEventListener("click", () => {
+resetBtn.addEventListener("click", () => {
   Game.reset();
 });
 
