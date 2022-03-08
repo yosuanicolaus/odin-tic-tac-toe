@@ -1,4 +1,5 @@
 const description = document.getElementById("description");
+description.setAttribute("style", "white-space: pre;");
 const drawScore = document.getElementById("drawScore");
 const oScore = document.getElementById("oScore");
 const xScore = document.getElementById("xScore");
@@ -50,20 +51,32 @@ const player = {
 
 const Game = (() => {
   let _turn = 0;
+  let _score = {
+    X: 0,
+    O: 0,
+    draw: 0,
+  };
+  let _isRunning = true;
   const play = (index, symbol) => {
-    if (!checkValidity(index)) return;
+    if (!_checkValidity(index) || !_isRunning) return;
     _turn++;
-    description.textContent = player[symbol].getName() + "'s turn";
+    description.textContent =
+      player[symbol].getName() +
+      " marked " +
+      index +
+      "!\r\n" +
+      player[_opposite(symbol)].getName() +
+      "'s turn";
     Gameboard.fill(index, symbol);
     Gameboard.display();
-    if (_turn >= 5) checkStatus(symbol);
+    if (_turn >= 5) _checkStatus(symbol);
   };
 
-  const checkValidity = (index) => {
+  const _checkValidity = (index) => {
     return Gameboard.display()[index] === "";
   };
 
-  const checkStatus = (symbol) => {
+  const _checkStatus = (symbol) => {
     console.log("checking status...");
     const board = Gameboard.display();
     let boardIndex = 0;
@@ -104,14 +117,20 @@ const Game = (() => {
 
     function checkKey() {
       if (key[0] === key[1] && key[0] === key[2] && key[0] !== "") {
-        announceWinner(symbol);
+        _announceWinner(symbol);
       }
     }
   };
 
-  const announceWinner = (winner) => {
+  const _opposite = (symbol) => {
+    return symbol === "X" ? "O" : "X";
+  };
+
+  const _announceWinner = (winner) => {
     console.log("announcing winner... the winner is... " + winner + "!!!");
     description.textContent = player[winner].getName() + " win!";
+    description.textContent += "\r\nplay again?";
+    _isRunning = false;
   };
 
   const playTurn = (index) => {
@@ -127,10 +146,6 @@ const Game = (() => {
     playTurn,
   };
 })();
-
-
-// const playerX = Player("X", "Jeff");
-// const playerO = Player("O", "Google");
 
 for (let i = 0; i < card.length; i++) {
   card[i].addEventListener("click", () => {
