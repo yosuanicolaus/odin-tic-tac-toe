@@ -1,3 +1,10 @@
+const description = document.getElementById("description");
+const drawScore = document.getElementById("drawScore");
+const oScore = document.getElementById("oScore");
+const xScore = document.getElementById("xScore");
+const reset = document.getElementById("reset");
+const newgame = document.getElementById("newgame");
+
 const container = document.getElementById("container");
 const card = document.getElementsByClassName("card");
 
@@ -21,14 +28,24 @@ const Gameboard = (() => {
   };
 })();
 
-const Player = (name, symbol) => {
+const Player = (symbol, name) => {
   const mark = (index) => {
     Game.play(index, symbol);
   };
 
+  const getName = () => {
+    return name;
+  };
+
   return {
     mark,
+    getName,
   };
+};
+
+const player = {
+  X: Player("X", "Jeff"),
+  O: Player("O", "Google"),
 };
 
 const Game = (() => {
@@ -36,6 +53,7 @@ const Game = (() => {
   const play = (index, symbol) => {
     if (!checkValidity(index)) return;
     _turn++;
+    description.textContent = player[symbol].getName() + "'s turn";
     Gameboard.fill(index, symbol);
     Gameboard.display();
     if (_turn >= 5) checkStatus(symbol);
@@ -93,13 +111,14 @@ const Game = (() => {
 
   const announceWinner = (winner) => {
     console.log("announcing winner... the winner is... " + winner + "!!!");
+    description.textContent = player[winner].getName() + " win!";
   };
 
   const playTurn = (index) => {
     if (_turn % 2 === 0) {
-      playerX.mark(index);
+      player.X.mark(index);
     } else {
-      playerO.mark(index);
+      player.O.mark(index);
     }
   };
 
@@ -109,8 +128,9 @@ const Game = (() => {
   };
 })();
 
-const playerX = Player("Jeff", "X");
-const playerO = Player("Bob", "O");
+
+// const playerX = Player("X", "Jeff");
+// const playerO = Player("O", "Google");
 
 for (let i = 0; i < card.length; i++) {
   card[i].addEventListener("click", () => {
