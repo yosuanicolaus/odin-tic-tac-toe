@@ -156,9 +156,21 @@ const Game = (() => {
     }
   };
 
+  const reset = () => {
+    for (let i = 0; i < 9; i++) {
+      Gameboard.fill(i, "");
+    }
+    Gameboard.display();
+    _turn = 0;
+    _isRunning = true;
+    description.textContent = "Round resetted!\r\n";
+    description.textContent += "click the cards below to start the game";
+  };
+
   return {
     play,
     playTurn,
+    reset,
   };
 })();
 
@@ -167,3 +179,7 @@ for (let i = 0; i < card.length; i++) {
     Game.playTurn(i);
   });
 }
+
+reset.addEventListener("click", () => {
+  Game.reset();
+});
