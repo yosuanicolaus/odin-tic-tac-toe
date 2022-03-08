@@ -61,5 +61,11 @@ body {
     justify-items: center;
     align-content: center;
     font-size: 3rem;
+    transition: .5s;
+  }
+
+  .card:hover {
+    background-color: #6edbfc;
+    border: 5px solid white;
   }
 }
