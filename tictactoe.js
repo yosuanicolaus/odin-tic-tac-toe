@@ -70,6 +70,7 @@ const Game = (() => {
     Gameboard.fill(index, symbol);
     Gameboard.display();
     if (_turn >= 5) _checkStatus(symbol);
+    if (_turn === 9 && _isRunning) _announceDraw();
   };
 
   const _checkValidity = (index) => {
@@ -127,10 +128,24 @@ const Game = (() => {
   };
 
   const _announceWinner = (winner) => {
-    console.log("announcing winner... the winner is... " + winner + "!!!");
+    _isRunning = false;
     description.textContent = player[winner].getName() + " win!";
     description.textContent += "\r\nplay again?";
+    _score[winner]++;
+    _updateScore();
+  };
+
+  const _announceDraw = () => {
     _isRunning = false;
+    description.textContent = "It's a draw!\r\nplay again?";
+    _score.draw++;
+    _updateScore();
+  };
+
+  const _updateScore = () => {
+    xScore.textContent = _score.X;
+    oScore.textContent = _score.O;
+    drawScore.textContent = _score.draw;
   };
 
   const playTurn = (index) => {
