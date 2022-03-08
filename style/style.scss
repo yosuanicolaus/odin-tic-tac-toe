@@ -40,6 +40,7 @@ body {
   .mainbar {
     grid-template-rows: auto 1fr auto;
     align-items: center;
+    padding: 5px;
   }
 }
 
@@ -67,5 +68,26 @@ body {
   .card:hover {
     background-color: #6edbfc;
     border: 5px solid white;
+  }
+}
+
+footer {
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+
+    button {
+      margin: 5px 20px;
+      width: 100px;
+      background-color: #f09e7b;
+      border-radius: 10px;
+      transition: .4s;
+    }
+
+    button:hover {
+      background-color: $c2;
+      border: 2px solid white;
+    }
   }
 }
