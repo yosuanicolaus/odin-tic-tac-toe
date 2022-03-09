@@ -18,6 +18,7 @@ const newgame = document.getElementById("newgame");
 const container = document.getElementById("container");
 const card = document.getElementsByClassName("card");
 
+
 const Gameboard = (() => {
   const board = Array(9).fill("");
 
@@ -53,10 +54,6 @@ const Player = (symbol, name) => {
   };
 };
 
-const player = {
-  X: Player("X", "Jeff"),
-  O: Player("O", "Google"),
-};
 
 const Game = (() => {
   let _turn = 0;
@@ -66,6 +63,7 @@ const Game = (() => {
     draw: 0,
   };
   let _isRunning = true;
+
   const play = (index, symbol) => {
     if (!_checkValidity(index) || !_isRunning) return;
     _turn++;
@@ -167,6 +165,28 @@ const Game = (() => {
     }
   };
 
+  const _botTurn = () => {
+    const availableIndex = [];
+    for (let i = 0; i < 9; i++) {
+      if (Gameboard.display()[i] === "") {
+        availableIndex.push(i);
+      }
+    }
+    const randomIndex =
+      availableIndex[Math.floor(Math.random() * availableIndex.length)];
+    playTurn(randomIndex);
+    console.log(
+      "hi, the availableIndex is " +
+        availableIndex +
+        ", and the randomIndex is " +
+        randomIndex
+    );
+  };
+
+  const botMove = () => {
+    _botTurn();
+  };
+
   const reset = () => {
     for (let i = 0; i < 9; i++) {
       Gameboard.fill(i, "");
@@ -194,10 +214,17 @@ const Game = (() => {
   return {
     play,
     playTurn,
+    botMove,
     reset,
     initialize,
   };
 })();
+
+
+const player = {
+  X: Player("X", "Jeff"),
+  O: Player("O", "Google"),
+};
 
 for (let i = 0; i < card.length; i++) {
   card[i].addEventListener("click", () => {
