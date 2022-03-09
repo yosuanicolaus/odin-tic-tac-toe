@@ -18,7 +18,6 @@ const newgame = document.getElementById("newgame");
 const container = document.getElementById("container");
 const card = document.getElementsByClassName("card");
 
-
 const Gameboard = (() => {
   const board = Array(9).fill("");
 
@@ -39,21 +38,17 @@ const Gameboard = (() => {
   };
 })();
 
-const Player = (symbol, name) => {
+const Player = (symbol, name, difficulty) => {
   const mark = (index) => {
     Game.play(index, symbol);
   };
 
-  const getName = () => {
-    return name;
-  };
-
   return {
     mark,
-    getName,
+    name,
+    difficulty,
   };
 };
-
 
 const Game = (() => {
   let _turn = 0;
@@ -68,16 +63,17 @@ const Game = (() => {
     if (!_checkValidity(index) || !_isRunning) return;
     _turn++;
     description.textContent =
-      player[symbol].getName() +
+      player[symbol].name +
       " marked " +
       index +
       "!\r\n" +
-      player[_opposite(symbol)].getName() +
+      player[_opposite(symbol)].name +
       "'s turn";
     Gameboard.fill(index, symbol);
     Gameboard.display();
     if (_turn >= 5) _checkStatus(symbol);
     if (_turn === 9 && _isRunning) _announceDraw();
+    mode();
   };
 
   const _checkValidity = (index) => {
@@ -136,7 +132,7 @@ const Game = (() => {
 
   const _announceWinner = (winner) => {
     _isRunning = false;
-    description.textContent = player[winner].getName() + " win!";
+    description.textContent = player[winner].name + " win!";
     description.textContent += "\r\nplay again?";
     resetBtn.textContent = "new round";
     _score[winner]++;
@@ -165,26 +161,37 @@ const Game = (() => {
     }
   };
 
-  const _botTurn = () => {
+  const _botTurn = (difficulty) => {
     const availableIndex = [];
     for (let i = 0; i < 9; i++) {
       if (Gameboard.display()[i] === "") {
         availableIndex.push(i);
       }
     }
-    const randomIndex =
-      availableIndex[Math.floor(Math.random() * availableIndex.length)];
-    playTurn(randomIndex);
-    console.log(
-      "hi, the availableIndex is " +
-        availableIndex +
-        ", and the randomIndex is " +
-        randomIndex
-    );
+    let botIndex;
+    switch (difficulty) {
+      case "easy":
+        botIndex =
+          availableIndex[Math.floor(Math.random() * availableIndex.length)];
+        break;
+      case "hard":
+        botIndex =
+          availableIndex[Math.floor(Math.random() * availableIndex.length)];
+        break;
+      default:
+        // impossible by default
+        botIndex =
+          availableIndex[Math.floor(Math.random() * availableIndex.length)];
+    }
+    playTurn(botIndex);
   };
 
-  const botMove = () => {
-    _botTurn();
+  const mode = () => {
+    const currentSymbol = _turn % 2 === 0 ? "X" : "O";
+    const difficulty = player[currentSymbol].difficulty;
+
+    if (difficulty === "human") return;
+    _botTurn(difficulty);
   };
 
   const reset = () => {
@@ -214,16 +221,15 @@ const Game = (() => {
   return {
     play,
     playTurn,
-    botMove,
+    mode,
     reset,
     initialize,
   };
 })();
 
-
 const player = {
-  X: Player("X", "Jeff"),
-  O: Player("O", "Google"),
+  X: Player("X", "Jeff", "human"),
+  O: Player("O", "Google", "easy"),
 };
 
 for (let i = 0; i < card.length; i++) {
@@ -234,8 +240,8 @@ for (let i = 0; i < card.length; i++) {
 
 start.addEventListener("click", () => {
   menu.style.display = "none";
-  player.X = Player("X", xName.value);
-  player.O = Player("O", oName.value);
+  player.X = Player("X", xName.value, xhumanorbot.value);
+  player.O = Player("O", oName.value, ohumanorbot.value);
   Game.initialize();
 });
 
