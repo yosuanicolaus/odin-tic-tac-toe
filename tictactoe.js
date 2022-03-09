@@ -171,15 +171,19 @@ const Game = (() => {
     let botIndex;
     switch (difficulty) {
       case "easy":
+        // just select random available tile
         botIndex =
           availableIndex[Math.floor(Math.random() * availableIndex.length)];
         break;
       case "hard":
+        // block the player if they're about to win, otherwise random
+        // TODO : implement this later!
         botIndex =
           availableIndex[Math.floor(Math.random() * availableIndex.length)];
         break;
       default:
-        // impossible by default
+        // impossible by default, use minmax algorithm
+        // TODO : implement this later!
         botIndex =
           availableIndex[Math.floor(Math.random() * availableIndex.length)];
     }
