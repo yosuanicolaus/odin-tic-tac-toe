@@ -191,7 +191,9 @@ const Game = (() => {
     const difficulty = player[currentSymbol].difficulty;
 
     if (difficulty === "human") return;
-    _botTurn(difficulty);
+    setTimeout(() => {
+      _botTurn(difficulty);
+    }, 1000);
   };
 
   const reset = () => {
@@ -204,6 +206,7 @@ const Game = (() => {
     description.textContent = "Round resetted!\r\n";
     description.textContent += "click the cards below to start the game";
     resetBtn.textContent = "reset round";
+    mode();
   };
 
   const initialize = () => {
@@ -240,6 +243,8 @@ for (let i = 0; i < card.length; i++) {
 
 start.addEventListener("click", () => {
   menu.style.display = "none";
+  if (xName.value === "") xName.value = "Player X";
+  if (oName.value === "") oName.value = "Player O";
   player.X = Player("X", xName.value, xhumanorbot.value);
   player.O = Player("O", oName.value, ohumanorbot.value);
   Game.initialize();
